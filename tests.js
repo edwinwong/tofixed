@@ -42,5 +42,15 @@ QUnit.module('toFixed', function() {
       '8.000',
       'toFixed(8, 3) returns 8.000'
     );
+    assert.strictEqual(
+      toFixed(-3.5, 2),
+      '-3.50',
+      'toFixed(-3.5, 2) returns -3.50'
+    );
+    assert.strictEqual(
+      toFixed(-0.4367, 3),
+      '-0.437',
+      'toFixed(-0.4367) returns -0.437'
+    );
   });
 });

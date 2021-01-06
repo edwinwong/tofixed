@@ -31,7 +31,9 @@ function toFixed(value, precision) {
     [integer, decimal] = rounded.toString().split('.');
     decimal = rounded.toString().slice(-precision);
     integer = rounded.toString().slice(0, -precision) || '0';
+    if (integer.slice(0, 1) === '-' ) {
+      integer = '-0' + integer.slice(1);
+    }
   }
-  var toFixedString = integer + '.' + decimal;
-  return toFixedString;
+  return integer + '.' + decimal;
 }
