@@ -20,7 +20,7 @@ function toFixed(value, precision) {
       decimal += '0';
     }
   } else if (precision > decimal.length) {
-    for (var i = 0, j = precision - decimal.length; i < j; i++) {
+    for (var j = precision - decimal.length, i = 0; i < j; i++) {
       decimal += '0';
     }
   } else {
