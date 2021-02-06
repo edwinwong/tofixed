@@ -5,7 +5,8 @@ function toFixed(value, precision) {
   // assumed to be a well-formed integer or float for value, and
   // 0 or a positive integer for precision. If this function is to be a
   // drop-in replacement for the toFixed function in accounting.js, the
-  // following two lines of code can be uncommented.
+  // following two lines of code, as well as the lines at the bottom can
+  // be uncommented.
   //
   // precision = checkPrecision(precision, lib.settings.number.precision);
   // value = unformat(value);
@@ -39,3 +40,6 @@ function toFixed(value, precision) {
   }
   return integer + '.' + decimal;
 }
+
+// Also uncomment this line to use and expose in accounting.js
+// lib.toFixed = toFixed;
