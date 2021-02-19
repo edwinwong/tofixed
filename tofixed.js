@@ -16,12 +16,12 @@ function toFixed(value, precision) {
   }
   var [integer, decimal] = value.toString().split('.');
   if (decimal === undefined) {
-    var decimal = '';
+    decimal = '';
     for (var i = 0; i < precision; i++) {
       decimal += '0';
     }
   } else if (precision > decimal.length) {
-    for (var j = precision - decimal.length, i = 0; i < j; i++) {
+    for (var j = precision - decimal.length, k = 0; k < j; k++) {
       decimal += '0';
     }
   } else {
