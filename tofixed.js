@@ -18,13 +18,13 @@ function toFixed(value, precision) {
   // Split input into integer and decimal portions. For example,
   // 0.615 => '0' and '615'
   // 10.235 => '10' and '235'
-  // 8 => '8' and '' (note that an undefined integer is converted to '')
+  // 8 => '8' and '' (note that an undefined decimal is converted to '')
   var integer = value.toString().split('.')[0];
   var decimal = value.toString().split('.')[1] || '';
   // If the precision is longer than decimal.length, no rounding is
   // needed. Simply add the required number of 0's
   if (precision > decimal.length) {
-    for (var i = precision - decimal.length, j = 0; j < i; j++) {
+    for (var j = precision - decimal.length, i = 0; i < j; i++) {
       decimal += '0';
     }
   }
