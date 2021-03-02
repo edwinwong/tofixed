@@ -16,20 +16,15 @@ function toFixed(value, precision) {
     return Math.round(value).toString();
   }
   // Split input into integer and decimal portions. For example,
-  // 0.615 => '0' and '5267'
+  // 0.615 => '0' and '615'
   // 10.235 => '10' and '235'
-  // 8 => '8' and undefined
-  var [integer, decimal] = value.toString().split('.');
-  // If the decimal is undefined, or the precision is longer than
-  // decimal.length, no rounding is needed. Simply add the required
-  // number of 0's.
-  if (decimal === undefined) {
-    decimal = '';
-    for (var i = 0; i < precision; i++) {
-      decimal += '0';
-    }
-  } else if (precision > decimal.length) {
-    for (var j = precision - decimal.length, k = 0; k < j; k++) {
+  // 8 => '8' and '' (note that an undefined integer is converted to '')
+  var integer = value.toString().split('.')[0];
+  var decimal = value.toString().split('.')[1] || '';
+  // If the precision is longer than decimal.length, no rounding is
+  // needed. Simply add the required number of 0's
+  if (precision > decimal.length) {
+    for (var i = precision - decimal.length, j = 0; j < i; j++) {
       decimal += '0';
     }
   }
@@ -38,16 +33,16 @@ function toFixed(value, precision) {
   // For example, if rounding 10.235 to 2 decimal places, generate the
   // number 1023.5, round this number to get 1024, then move the decimal
   // back to get 10.24
-    else {
+  else {
     integer = integer + decimal.slice(0, precision);
     decimal = decimal.slice(precision);
-    var roundingNumber = integer + '.' + decimal;
-    var rounded = Math.round(parseFloat(roundingNumber));
-    [integer, decimal] = rounded.toString().split('.');
-    decimal = rounded.toString().slice(-precision);
-    integer = rounded.toString().slice(0, -precision);
-    // Make sure numbers less than 0 have a leading 0 or -0 in the
-    // string representation
+    var numberToRound = parseFloat(integer + '.' + decimal);
+    var roundedNumber = Math.round(numberToRound);
+    var roundedString = roundedNumber.toString();
+    decimal = roundedString.slice(-precision);
+    integer = roundedString.slice(0, -precision);
+    // Make sure the integer portion has a leading 0 or -0 when needed
+    // in the string representation
     if (integer === '') {
       integer = '0';
     } else if (integer === '-') {
