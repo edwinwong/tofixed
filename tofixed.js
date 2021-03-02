@@ -21,9 +21,9 @@ function toFixed(value, precision) {
   // 8 => '8' and '' (note that an undefined decimal is converted to '')
   var integer = value.toString().split('.')[0];
   var decimal = value.toString().split('.')[1] || '';
-  // If the precision is longer than decimal.length, no rounding is
-  // needed. Simply add the required number of 0's
-  if (precision > decimal.length) {
+  // If the precision is greater than or equal to decimal.length, no
+  // rounding is needed. Simply add the required number of 0's
+  if (precision >= decimal.length) {
     for (var j = precision - decimal.length, i = 0; i < j; i++) {
       decimal += '0';
     }
