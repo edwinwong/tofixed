@@ -43,10 +43,8 @@ function toFixed(value, precision) {
     integer = roundedString.slice(0, -precision);
     // Make sure the integer portion has a leading 0 or -0 when needed
     // in the string representation
-    if (integer === '') {
-      integer = '0';
-    } else if (integer === '-') {
-      integer = '-0';
+    if (integer === '' || integer === '-') {
+      integer += '0';
     }
   }
   // Join the integer and decimal portions
